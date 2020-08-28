@@ -49,6 +49,9 @@ $router = new Router(new Request);
 $router->get('/profile', function ($request) {
 	return "<h1>Request is working!</h1>";
 });
+$router->get('/', function ($request) {
+	return "<h1>home is working!</h1>";
+});
 $router->post('/something', function ($request) {
 	$body = $request->getBody();
 });
