@@ -1,0 +1,20 @@
+{
+    "autoload": {
+        "psr-4": {
+            "app\\": "src/"
+        }
+    },
+    "name": "kevjo/routing",
+    "description": "A simple routing system.",
+    "type": "project",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
+    "authors": [
+        {
+            "name": "Joseph Kelly",
+            "email": "kevjoekelly@gmail.com"
+        }
+    ],
+    "require": {}
+}
