@@ -5,6 +5,8 @@ $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	echo "Hello World!";
+	echo "<br>";
+	echo $_GET['url'];
 	// if ($_GET['url'] == "auth") {
 
 	// } elseif ($_GET['url'] == "users") {
