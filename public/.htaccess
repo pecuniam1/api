@@ -7,4 +7,4 @@ RewriteRule ^(.*)$ index.php [QSA]
 
 #conditional
 RewriteCond %{HTTPS} off
-RewriteRule (.*) https://%{SERVER_NAME}/$1 [R,L]
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [R=301,L]
