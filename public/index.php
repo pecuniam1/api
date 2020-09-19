@@ -7,7 +7,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($_GET['url'] == "auth") {
 
 	} elseif ($_GET['url'] == "users") {
-
+		echo json_encode(($db->query("SELECT * FROM users")));
+		http_response_code(200);
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($_GET['url'] == "auth") {
