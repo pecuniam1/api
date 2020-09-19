@@ -2,17 +2,15 @@
 require_once("db/DB.php");
 // $db = new DB("127.0.0.1", "Tiffany", "root", "");
 $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2F72NH0$%");
+$path = ltrim($_SERVER['REQUEST_URI'], '/');
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-	echo "Hello World!";
-	echo "<br>";
-	echo $_GET['url'];
-	// if ($_GET['url'] == "auth") {
+	if ($_GET['url'] == "auth") {
 
-	// } elseif ($_GET['url'] == "users") {
-	// 	echo json_encode(($db->query("SELECT * FROM users")));
-	// 	http_response_code(200);
-	// }
+	} elseif ($_GET['url'] == "users") {
+		echo json_encode(($db->query("SELECT * FROM users")));
+		http_response_code(200);
+	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($_GET['url'] == "auth") {
 		$postBody = file_get_contents("php://input");

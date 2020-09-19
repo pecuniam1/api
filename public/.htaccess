@@ -1,2 +1,6 @@
+#Enable apache rewrite engine
 RewriteEngine On
-RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
+#set base
+RewriteBase /
+#set rule -- any path after url will go to index.
+RewriteRule ^(.*)$ index.php [QSA]
