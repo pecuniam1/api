@@ -5,14 +5,14 @@ $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-	if ($_GET['url'] == "auth") {
+	if ($path == "auth") {
 
-	} elseif ($_GET['url'] == "users") {
+	} elseif ($path == "users") {
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
-	if ($_GET['url'] == "auth") {
+	if ($path == "auth") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody);
 
@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		}
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
-	if ($_GET['url'] == "auth") {
+	if ($path == "auth") {
 		if (isset($_GET['token'])) {
 			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
 				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
