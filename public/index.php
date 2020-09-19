@@ -4,12 +4,13 @@ require_once("db/DB.php");
 $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2F72NH0$%");
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-	if ($_GET['url'] == "auth") {
+	echo "Hello World!";
+	// if ($_GET['url'] == "auth") {
 
-	} elseif ($_GET['url'] == "users") {
-		echo json_encode(($db->query("SELECT * FROM users")));
-		http_response_code(200);
-	}
+	// } elseif ($_GET['url'] == "users") {
+	// 	echo json_encode(($db->query("SELECT * FROM users")));
+	// 	http_response_code(200);
+	// }
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($_GET['url'] == "auth") {
 		$postBody = file_get_contents("php://input");
