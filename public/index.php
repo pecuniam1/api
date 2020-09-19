@@ -10,6 +10,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	} elseif ($path == "users") {
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
+	} else {
+		echo "What are you trying to do? Page not found.";
+		http_response_code(404);
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($path == "auth") {
