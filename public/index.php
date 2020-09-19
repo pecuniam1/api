@@ -1,57 +1,52 @@
 <?php
-include '../src/config/constants.php';
-include 'autoload.inc.php';
+require_once("db/DB.php");
+// $db = new DB("127.0.0.1", "Tiffany", "root", "");
+$db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2F72NH0$%");
 
-use src\routing\Route;
-use src\routing\Request;
-use src\routing\Router;
-use src\controllers\BaseController;
-use src\controllers\AboutUsController;
-use src\controllers\ContactUsController;
-use src\controllers\JSONController;
+if ($_SERVER['REQUEST_METHOD'] == "GET") {
+	if ($_GET['url'] == "auth") {
 
+	} elseif ($_GET['url'] == "users") {
 
-/**
- * This is the base, anything directed to the
- * base address will be directed here.
- */
-Route::set('index.php', function () {
-	BaseController::createView('home');
-});
+	}
+} else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+	if ($_GET['url'] == "auth") {
+		$postBody = file_get_contents("php://input");
+		$postBody = json_decode($postBody);
 
-/**
- * These examples returns a view that can be html or php.
- */
-Route::set('about-us', function () {
-	AboutUsController::createView('about-us');
-});
-Route::set('contact-us', function () {
-	ContactUsController::createView('contact-us');
-});
+		$username = $postBody->username;
+		$password = $postBody->password;
 
-/**
- * This route is an example of getting json data.
- */
-Route::set('get-puppy', function () {
-	header('Content-Type: application/json');
-	echo JSONController::getJSON();
-});
-
-/**
- * This route is an example of setting json data.
- */
-Route::set('set-puppy', function () {
-	JSONController::setJSON();
-});
-
-
-$router = new Router(new Request);
-$router->get('/profile', function ($request) {
-	return "<h1>Request is working!</h1>";
-});
-$router->get('/', function ($request) {
-	return "<h1>home is working!</h1>";
-});
-$router->post('/something', function ($request) {
-	$body = $request->getBody();
-});
+		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username'=>$username))) {
+			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username', array(':username'=>$username))[0]['password'])) {
+				$cstrong = TRUE;
+				$token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
+				$user_id = $db->query('SELECT id FROM users WHERE username=:username', array(':username'=>$username))[0]['id'];
+				$db->query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id', array(':token'=>sha1($token), ':user_id'=>$user_id));
+				echo '{ "Token": "'.$token.'" }';
+			} else {
+				http_response_code(401);
+			}
+		} else {
+			http_response_code(401);
+		}
+	}
+} else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
+	if ($_GET['url'] == "auth") {
+		if (isset($_GET['token'])) {
+			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
+				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
+				echo '{ "Status": "Success" }';
+				http_response_code(200);
+			} else {
+				echo '{ "Error": "Invalid token" }';
+				http_response_code(400);
+			}
+		} else {
+			echo '{ "Error": "Bad Request" }';
+			http_response_code(400);
+		}
+	}
+} else { // for anything other than post or get
+	http_response_code(405);
+}
