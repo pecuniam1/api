@@ -84,6 +84,11 @@ function addHeader()
 	header("Content-type: application/json; charset=utf-8");
 }
 
+/**
+ * sendTestMessage
+ *
+ * @return void
+ */
 function sendTestMessage()
 {
 	$to = "kevin.kelly@comcast.net";
@@ -93,5 +98,11 @@ function sendTestMessage()
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$headers .= "From: JoeKelly online <webmaster@joekellyonline.com>" . "\r\n";
 	$headers .= "Reply-To: webmaster@joekellyonline.com" . "\r\n";
+	$headers .= "X-Mailer: PHP/" . phpversion();
 	mail($to, $subject, $message, $headers);
+	$success = mail($to, $subject, $message, $headers);
+	if (!$success) {
+		$errorMessage = error_get_last()['message'];
+	}
+
 }
