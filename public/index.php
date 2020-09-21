@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody);
 		addHeader();
-		echo $postBody;
+		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	if ($path == "auth") {
