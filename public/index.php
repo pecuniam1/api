@@ -91,6 +91,7 @@ function sendTestMessage()
 	$subject = "This is the subject";
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	$headers .= "From: <webmaster@joekellyonline.com>" . "\r\n";
+	$headers .= "From: JoeKelly online <webmaster@joekellyonline.com>" . "\r\n";
+	$headers .= "Reply-To: webmaster@joekellyonline.com" . "\r\n";
 	mail($to, $subject, $message, $headers);
 }
