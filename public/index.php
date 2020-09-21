@@ -6,9 +6,7 @@ $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-	if ($path == "auth") {
-		// do nothing for now
-	} elseif ($path == "users") {
+	if ($path == "users") {
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
 	} else {
