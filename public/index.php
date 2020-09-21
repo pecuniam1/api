@@ -35,12 +35,18 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 				':user_id'=>$user_id));
 				addHeader();
 				echo '{ "Token": "'.$token.'" }';
+				// 201 Created response code should be transmitted
 			} else {
 				http_response_code(401);
 			}
 		} else {
 			http_response_code(401);
 		}
+	} elseif ($path == "contact") {
+		$postBody = file_get_contents("php://input");
+		$postBody = json_decode($postBody);
+		addHeader();
+		echo $postBody;
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	if ($path == "auth") {
