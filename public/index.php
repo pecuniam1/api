@@ -86,8 +86,11 @@ function addHeader()
 
 function sendTestMessage()
 {
-	$message = "This is the message";
-	$message = wordwrap($message, 70);
+	$to = "kevin.kelly@comcast.net";
+	$message = wordwrap("This is the message", 70);
 	$subject = "This is the subject";
-	mail("kevin.kelly@comcast.net", $subject, $message);
+	$headers = "MIME-Version: 1.0" . "\r\n";
+	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+	$headers .= "From: <webmaster@joekellyonline.com>" . "\r\n";
+	mail($to, $subject, $message, $headers);
 }
