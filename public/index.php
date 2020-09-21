@@ -46,6 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody);
 		addHeader();
+		sendTestMessage();
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
@@ -81,4 +82,12 @@ function addHeader()
 {
 	cleanHeader();
 	header("Content-type: application/json; charset=utf-8");
+}
+
+function sendTestMessage()
+{
+	$message = "This is the message";
+	$message = wordwrap($message, 70);
+	$subject = "This is the subject";
+	mail("kevin.kelly@comcast.net", $subject, $message);
 }
