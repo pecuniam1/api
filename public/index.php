@@ -7,7 +7,7 @@ $path = ltrim($_SERVER['REQUEST_URI'], '/');
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($path == "auth") {
-
+		// do nothing for now
 	} elseif ($path == "users") {
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
@@ -24,11 +24,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$password = $postBody->password;
 
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username'=>$username))) {
-			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username', array(':username'=>$username))[0]['password'])) {
-				$cstrong = TRUE;
+			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
+				array(':username'=>$username))[0]['password'])) {
+				$cstrong = true;
 				$token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
-				$user_id = $db->query('SELECT id FROM users WHERE username=:username', array(':username'=>$username))[0]['id'];
-				$db->query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id', array(':token'=>sha1($token), ':user_id'=>$user_id));
+				$user_id = $db->query('SELECT id FROM users WHERE username=:username',
+				array(':username'=>$username))[0]['id'];
+				$db->query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id', array(':token'=>sha1($token),
+				':user_id'=>$user_id));
 				echo '{ "Token": "'.$token.'" }';
 			} else {
 				http_response_code(401);
