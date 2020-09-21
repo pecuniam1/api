@@ -7,7 +7,7 @@ $path = ltrim($_SERVER['REQUEST_URI'], '/');
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($path == "users") {
-		header('Content-type:application/json;charset=utf-8');
+		addHeader();
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
 	} else {
@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 				array(':username'=>$username))[0]['id'];
 				$db->query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id', array(':token'=>sha1($token),
 				':user_id'=>$user_id));
-				header('Content-type:application/json;charset=utf-8');
+				addHeader();
 				echo '{ "Token": "'.$token.'" }';
 			} else {
 				http_response_code(401);
@@ -45,20 +45,27 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		if (isset($_GET['token'])) {
 			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
 				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
-				header('Content-type:application/json;charset=utf-8');
+				addHeader();
 				echo '{ "Status": "Success" }';
 				http_response_code(200);
 			} else {
-				header('Content-type:application/json;charset=utf-8');
+				addHeader();
 				echo '{ "Error": "Invalid token" }';
 				http_response_code(400);
 			}
 		} else {
-			header('Content-type:application/json;charset=utf-8');
+			addHeader();
 			echo '{ "Error": "Bad Request" }';
 			http_response_code(400);
 		}
 	}
 } else { // for anything other than post or get
 	http_response_code(405);
+}
+
+function addHeader()
+{
+	ob_clean();
+	header_remove();
+	header("Content-type: application/json; charset=utf-8");
 }
