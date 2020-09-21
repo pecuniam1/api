@@ -11,8 +11,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
 	} else {
-		ob_clean();
-		header_remove();
+		cleanHeader();
 		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
 		include("notFound.php");
 		die();
@@ -66,9 +65,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	http_response_code(405);
 }
 
-function addHeader()
+function cleanHeader()
 {
 	ob_clean();
 	header_remove();
+}
+
+function addHeader()
+{
+	cleanHeader();
 	header("Content-type: application/json; charset=utf-8");
 }
