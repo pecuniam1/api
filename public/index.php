@@ -13,8 +13,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	} else {
 		ob_clean();
 		header_remove();
-		echo "What are you trying to do? Page not found.";
-		http_response_code(404);
+		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
+		include("notFound.php");
+		die();
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($path == "auth") {
