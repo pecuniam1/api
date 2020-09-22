@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	} elseif ($path == "contact") {
 		// if given proper json data, this is working perfectly
 		$postBody = file_get_contents("php://input");
+		echo var_dump($postBody);
+		exit();
 		$postBody = json_decode($postBody, true);
 		addHeader();
 		$message = "Name: ".(!empty($postBody["name"]) ? $postBody["name"] : "empty")."<br>";
