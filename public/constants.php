@@ -1,3 +1,3 @@
 <?php
-define("WEBMASTER_ADDRESS", "kevin.kelly@comcast.net");
+define("WEBMASTER_ADDRESS", "webmaster@joekellyonline.com");
 define("WEBSITE_NAME", "JoeKelly Online");
