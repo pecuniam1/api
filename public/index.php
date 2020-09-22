@@ -47,7 +47,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody, true);
 		addHeader();
-		sendTestMessage($postBody["something"]);
+		$message = "Name: ".$postBody["name"]."<br>";
+		$message .= "Phone: ".$postBody["phone"]."<br>";
+		$message .= "Email: ".$postBody["email"]."<br>";
+		$message .= "Subject: ".$postBody["subject"];
+		sendTestMessage($message);
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
