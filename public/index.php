@@ -1,5 +1,6 @@
 <?php
 require_once("db/DB.php");
+require_once("constants.php");
 // $db = new DB("127.0.0.1", "Tiffany", "root", "");
 $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2F72NH0$%");
 # //This needs to be cleaned, at risk for injection if I end up using this path for sql queries.
@@ -96,13 +97,13 @@ function addHeader()
  */
 function sendTestMessage($message = "")
 {
-	$to = "kevin.kelly@comcast.net";
+	$to = WEBMASTER_ADDRESS;
 	$message = wordwrap($message, 70);
 	$subject = "Email From site";
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-	$headers .= "From: JoeKelly online <webmaster@joekellyonline.com>" . "\r\n";
-	$headers .= "Reply-To: webmaster@joekellyonline.com" . "\r\n";
+	$headers .= "From: " . WEBSITE_NAME . "<" . WEBMASTER_ADDRESS . ">" . "\r\n";
+	$headers .= "Reply-To: " . WEBMASTER_ADDRESS . "\r\n";
 	$headers .= "X-Mailer: PHP/" . phpversion();
 	$success = mail($to, $subject, $message, $headers);
 	if (!$success) {
