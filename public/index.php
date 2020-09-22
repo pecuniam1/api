@@ -43,13 +43,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			http_response_code(401);
 		}
 	} elseif ($path == "contact") {
+		// must be in this format { "something": "something else" }
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody, true);
-		echo var_dump($postBody);
-		exit;
-		file_put_contents("poststuff.txt", var_dump($postBody));
 		addHeader();
-		sendTestMessage($postBody);
+		sendTestMessage($postBody["something"]);
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
