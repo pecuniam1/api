@@ -47,7 +47,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		file_put_contents("poststuff.txt", $postBody);
 		$postBody = json_decode($postBody);
 		addHeader();
-		sendTestMessage($postBody);
+		sendTestMessage($postBody["something"]);
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
