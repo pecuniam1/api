@@ -7,3 +7,4 @@ RewriteCond %{HTTPS} off
 RewriteRule (.*) https://%{SERVER_NAME}/$1 [R=301,L]
 #set rule -- any path after url will go to index.
 RewriteRule ^(.*)$ index.php [QSA]
+Access-Control-Allow-Origin: *
