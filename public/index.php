@@ -44,8 +44,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		}
 	} elseif ($path == "contact") {
 		$postBody = file_get_contents("php://input");
-		$postBody = json_decode($postBody);
-		file_put_contents("poststuff.txt", print_r($postBody));
+		$postBody = json_decode($postBody, true);
+		file_put_contents("poststuff.txt", $postBody["something"]);
 		addHeader();
 		sendTestMessage($postBody);
 		echo '{ "Status": "Success" }';
