@@ -46,9 +46,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		// if given proper json data, this is working perfectly
 		$postBody = file_get_contents("php://input");
 		addHeader();
-		header("Access-Control-Allow-Origin: *");
-		echo var_dump($postBody);
-		exit();
 		$postBody = json_decode($postBody, true);
 		$message = "Name: ".(!empty($postBody["name"]) ? $postBody["name"] : "empty")."<br>";
 		$message .= "Phone: ".(!empty($postBody["phone"]) ? $postBody["phone"] : "empty")."<br>";
