@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			http_response_code(401);
 		}
 	} elseif ($path == "contact") {
-		// must be in this format { "something": "something else" }
+		// if given proper json data, this is working perfectly
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody, true);
 		addHeader();
