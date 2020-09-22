@@ -46,7 +46,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody);
 		addHeader();
-		sendTestMessage();
+		sendTestMessage($postBody);
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
@@ -89,17 +89,16 @@ function addHeader()
  *
  * @return void
  */
-function sendTestMessage()
+function sendTestMessage($message = "")
 {
 	$to = "kevin.kelly@comcast.net";
-	$message = wordwrap("This is the message", 70);
-	$subject = "This is the subject";
+	$message = wordwrap($message, 70);
+	$subject = "Email From site";
 	$headers = "MIME-Version: 1.0" . "\r\n";
 	$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 	$headers .= "From: JoeKelly online <webmaster@joekellyonline.com>" . "\r\n";
 	$headers .= "Reply-To: webmaster@joekellyonline.com" . "\r\n";
 	$headers .= "X-Mailer: PHP/" . phpversion();
-	mail($to, $subject, $message, $headers);
 	$success = mail($to, $subject, $message, $headers);
 	if (!$success) {
 		$errorMessage = error_get_last()['message'];
