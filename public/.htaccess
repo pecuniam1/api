@@ -1,3 +1,4 @@
+Access-Control-Allow-Origin: *
 #Enable apache rewrite engine
 RewriteEngine On
 #set base
