@@ -46,15 +46,14 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		// must be in this format { "something": "something else" }
 		$postBody = file_get_contents("php://input");
 		echo var_dump($postBody);
-		exit;
-		$postBody = json_decode($postBody, true);
-		addHeader();
-		$message = "Name: ".$postBody["name"]."<br>";
-		$message .= "Phone: ".$postBody["phone"]."<br>";
-		$message .= "Email: ".$postBody["email"]."<br>";
-		$message .= "Subject: ".$postBody["subject"];
-		sendTestMessage($message);
-		echo '{ "Status": "Success" }';
+		// $postBody = json_decode($postBody, true);
+		// addHeader();
+		// $message = "Name: ".$postBody["name"]."<br>";
+		// $message .= "Phone: ".$postBody["phone"]."<br>";
+		// $message .= "Email: ".$postBody["email"]."<br>";
+		// $message .= "Subject: ".$postBody["subject"];
+		// sendTestMessage($message);
+		// echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	if ($path == "auth") {
