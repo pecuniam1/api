@@ -47,10 +47,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody, true);
 		addHeader();
-		$message = "Name: ".$postBody["name"]."<br>";
-		$message .= "Phone: ".$postBody["phone"]."<br>";
-		$message .= "Email: ".$postBody["email"]."<br>";
-		$message .= "Subject: ".$postBody["subject"];
+		$message = "Name: ".(!empty($postBody["name"]) ? $postBody["name"] : "empty")."<br>";
+		$message .= "Phone: ".(!empty($postBody["phone"]) ? $postBody["phone"] : "empty")."<br>";
+		$message .= "Email: ".(!empty($postBody["email"]) ? $postBody["email"] : "empty")."<br>";
+		$message .= "Subject: ".(!empty($postBody["subject"]) ? $postBody["subject"] : "empty");
 		sendTestMessage($message);
 		echo '{ "Status": "Success" }';
 	}
