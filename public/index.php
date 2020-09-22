@@ -45,6 +45,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	} elseif ($path == "contact") {
 		// must be in this format { "something": "something else" }
 		$postBody = file_get_contents("php://input");
+		echo $postBody;
+		exit;
 		$postBody = json_decode($postBody, true);
 		addHeader();
 		$message = "Name: ".$postBody["name"]."<br>";
