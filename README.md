@@ -1,6 +1,7 @@
 # API
 ## This is a sample PHP site to show how various HTTP methods work with an API
-
+---
+To view an example of the custom 404 page, go to [https://api.joekellyonline.com](https://api.joekellyonline.com)
 | Method | Endpoint | Purpose |
 | ------ | -------- | ------- |
 | GET | [https://api.joekellyonline.com/users](https://api.joekellyonline.com/users) | Returns a list of users in JSON. |
