@@ -51,7 +51,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$message = "Name: ".(!empty($postBody["name"]) ? $postBody["name"] : "empty")."<br>";
 		$message .= "Phone: ".(!empty($postBody["phone"]) ? $postBody["phone"] : "empty")."<br>";
 		$message .= "Email: ".(!empty($postBody["email"]) ? $postBody["email"] : "empty")."<br>";
-		$message .= "Subject: ".(!empty($postBody["subject"]) ? $postBody["subject"] : "empty");
+		$message .= "Subject: ".(!empty($postBody["subject"]) ? $postBody["subject"] : "empty")."<br>";
+		$message .= "IP Address: ".getClientIpAddress();
 		sendTestMessage($message);
 		echo '{ "Status": "Success" }';
 	}
@@ -91,8 +92,8 @@ function addHeader()
 }
 
 /**
- * sendTestMessage
- *
+ * Sends an email message to the webmaster.
+ * @param string $message The message to send to the webmaster.
  * @return void
  */
 function sendTestMessage($message = "")
@@ -109,5 +110,28 @@ function sendTestMessage($message = "")
 	if (!$success) {
 		$errorMessage = error_get_last()['message'];
 	}
-
+}
+/**
+ * Gets the client IP address.
+ * @return string
+ */
+function getClientIpAddress() : string
+{
+	$ipaddress = '';
+	if (isset($_SERVER['HTTP_CLIENT_IP'])) {
+		$ipaddress = $_SERVER['HTTP_CLIENT_IP'];
+	} elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {
+		$ipaddress = $_SERVER['HTTP_X_FORWARDED_FOR'];
+	} elseif (isset($_SERVER['HTTP_X_FORWARDED'])) {
+		$ipaddress = $_SERVER['HTTP_X_FORWARDED'];
+	} elseif (isset($_SERVER['HTTP_FORWARDED_FOR'])) {
+		$ipaddress = $_SERVER['HTTP_FORWARDED_FOR'];
+	} elseif (isset($_SERVER['HTTP_FORWARDED'])) {
+		$ipaddress = $_SERVER['HTTP_FORWARDED'];
+	} elseif (isset($_SERVER['REMOTE_ADDR'])) {
+		$ipaddress = $_SERVER['REMOTE_ADDR'];
+	} else {
+		$ipaddress = 'UNKNOWN';
+	}
+	return $ipaddress;
 }
