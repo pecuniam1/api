@@ -14,7 +14,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	} else {
 		cleanHeader();
 		header($_SERVER["SERVER_PROTOCOL"]." 404 Not Found", true, 404);
-		include("notFound.php");
+		include("not_found.html");
 		die();
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
