@@ -4,13 +4,10 @@ require_once("constants.php");
 // $db = new DB("127.0.0.1", "Tiffany", "root", "");
 $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2F72NH0$%");
 # //This needs to be cleaned, at risk for injection if I end up using this path for sql queries.
-$path = ltrim($_SERVER['REQUEST_URI'], '/');
-echo $path;
-echo "<br>".$_GET['url'];
-die;
+// $path = ltrim($_SERVER['REQUEST_URI'], '/'); // This includes everthing after https://api.joekellyonline.com/
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
-	if ($path == "users") {
+	if ($_GET['url'] == "users") {
 		addHeader();
 		echo json_encode(($db->query("SELECT * FROM users")));
 		http_response_code(200);
@@ -21,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		die();
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
-	if ($path == "auth") {
+	if ($_GET['url'] == "auth") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody, true);
 
@@ -45,7 +42,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		} else {
 			http_response_code(401);
 		}
-	} elseif ($path == "contact") {
+	} elseif ($_GET['url'] == "contact") {
 		// if given proper json data, this is working perfectly
 		$postBody = file_get_contents("php://input");
 		addHeader();
@@ -59,9 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
-	if ($path == "auth") {
-		if (isset($_GET['token'])) {
-			die;
+	if ($_GET['url'] == "auth") {
+		if (isset($_GET['token'])) { // needs to be cleaned
 			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
 				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
 				addHeader();
@@ -78,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			http_response_code(400);
 		}
 	} else {
-		echo "RIGHT HRERE";die;
+		// do something here
 	}
 } else { // for anything other than post or get
 	http_response_code(405);
