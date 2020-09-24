@@ -1,6 +1,10 @@
 <?php
 
-require 'includes/autoload.inc.php';
+//require 'includes/autoload.inc.php';
+require 'classes/Constants.class.php';
+require 'classes/Header.class.php';
+require 'classes/IP.class.php';
+require 'classes/SiteDB.class.php';
 
 use Classes\Constants as Constants;
 use Classes\Header as Header;
