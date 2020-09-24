@@ -26,6 +26,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$password = $postBody["password"];
 
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username'=>$username))) {
+			echo "here";die;
 			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
 				array(':username'=>$username))[0]['password'])) {
 				$cstrong = true;
