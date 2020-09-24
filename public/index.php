@@ -1,12 +1,13 @@
 <?php
+include '../classes/Constants.class.php';
+include 'autoload.inc.php';
 
-//require 'includes/autoload.inc.php';
-// include_once 'classes/Constants.class.php';
-// include_once 'classes/Header.class.php';
-// include_once 'classes/IP.class.php';
-// include_once 'classes/SiteDB.class.php';
-// 
-// $db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
+use Classes\Header as Header;
+use Classes\IP as IP;
+use Classes\SiteDB as SiteDB;
+use Classes\Constants as Constants;
+
+$db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($_GET['url'] == "users") {

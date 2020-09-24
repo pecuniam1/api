@@ -1,4 +1,5 @@
 <?php
+namespace Classes;
 class SiteDB
 {
 	private $pdo;

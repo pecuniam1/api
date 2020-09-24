@@ -1,14 +1,20 @@
 {
-    "name": "kevjo/api",
-    "description": "API written in PHP.",
+    "autoload": {
+        "psr-4": {
+            "app\\": "classes/"
+        }
+    },
+    "name": "kevjo/routing",
+    "description": "A simple routing system.",
+    "type": "project",
+    "require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    },
     "authors": [
         {
-            "name": "Joe Kelly",
+            "name": "Joseph Kelly",
             "email": "kevjoekelly@gmail.com"
         }
     ],
-	"require": {},
-	"require-dev": {
-        "squizlabs/php_codesniffer": "^3.5"
-    }
+    "require": {}
 }
