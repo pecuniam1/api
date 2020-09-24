@@ -37,8 +37,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 					echo '{ "Token": "'.$token.'" }';
 				// 201 Created response code should be transmitted
 			} else {
-				echo "password not verified";
-				//http_response_code(401);
+				http_response_code(401);
 			}
 		} else {
 			http_response_code(401);
@@ -59,17 +58,21 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	if ($path == "auth") {
 		if (isset($_GET['token'])) {
+			echo "A";
 			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
 				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
+				echo "B";
 				addHeader();
-				echo '{ "Status": "Success" }';
+				echo '{ "Status": "Success" }'; // Token successfully deleted.
 				http_response_code(200);
 			} else {
+				echo "C";
 				addHeader();
-				echo '{ "Error": "Invalid token" }';
+				echo '{ "Error": "Invalid token" }'; // Wrong token.
 				http_response_code(400);
 			}
-		} else {
+		} else { // Token is not set.
+			echo "D";
 			addHeader();
 			echo '{ "Error": "Bad Request" }';
 			http_response_code(400);
