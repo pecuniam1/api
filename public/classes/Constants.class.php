@@ -1,6 +1,4 @@
 <?php
-namespace Classes;
-
 class Constants
 {
 	const WEBMASTER_ADDRESS = "webmaster@joekellyonline.com";

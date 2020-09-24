@@ -1,6 +1,4 @@
 <?php
-namespace Classes;
-
 class Header
 {
 	/**

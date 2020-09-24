@@ -1,9 +1,4 @@
 {
-	"autoload": {
-        "psr-4": {
-            "app\\": "Classes/"
-        }
-    },
     "name": "kevjo/api",
     "description": "API written in PHP.",
     "authors": [

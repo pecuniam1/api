@@ -1,15 +1,10 @@
 <?php
 
 //require 'includes/autoload.inc.php';
-require 'classes/Constants.class.php';
-require 'classes/Header.class.php';
-require 'classes/IP.class.php';
-require 'classes/SiteDB.class.php';
-
-use Classes\Constants as Constants;
-use Classes\Header as Header;
-use Classes\IP as IP;
-use Classes\SiteDB as SiteDB;
+include_once 'classes/Constants.class.php';
+include_once 'classes/Header.class.php';
+include_once 'classes/IP.class.php';
+include_once 'classes/SiteDB.class.php';
 
 $db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
 
