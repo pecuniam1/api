@@ -5,7 +5,9 @@ require_once("constants.php");
 $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2F72NH0$%");
 # //This needs to be cleaned, at risk for injection if I end up using this path for sql queries.
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
-echo $path;die;
+echo $path;
+echo "<br>".$GET['url'];
+die;
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($path == "users") {
