@@ -38,6 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 				echo '{ "Token": "'.$token.'" }';
 				// 201 Created response code should be transmitted
 			} else {
+				echo "password not verified";
 				http_response_code(401);
 			}
 		} else {
