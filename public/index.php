@@ -1,12 +1,12 @@
 <?php
 
 //require 'includes/autoload.inc.php';
-include_once 'classes/Constants.class.php';
-include_once 'classes/Header.class.php';
-include_once 'classes/IP.class.php';
-include_once 'classes/SiteDB.class.php';
-
-$db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
+// include_once 'classes/Constants.class.php';
+// include_once 'classes/Header.class.php';
+// include_once 'classes/IP.class.php';
+// include_once 'classes/SiteDB.class.php';
+// 
+// $db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($_GET['url'] == "users") {
@@ -28,10 +28,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$password = $postBody["password"];
 
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username' => $username))) {
-			if (password_verify($password, $db->query(
-				'SELECT password FROM users WHERE username=:username',
-				array(':username' => $username)
-			)[0]['password'])) {
+			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
+				array(':username' => $username))[0]['password'])) {
 				$cstrong = true;
 				$token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
 				$user_id = $db->query(
