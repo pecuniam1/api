@@ -21,7 +21,6 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($path == "auth") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody);
-		var_dump($postBody);die;
 
 		$username = $postBody->username;
 		$password = $postBody->password;
