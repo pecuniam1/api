@@ -1,7 +1,7 @@
 <?php
 namespace Classes;
 
-class SiteDb
+class SiteDB
 {
 	private $pdo;
 	public function __construct($host, $dbname, $username, $password)
