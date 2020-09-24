@@ -59,20 +59,24 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($path == "auth") {
 		if (isset($_GET['token'])) {
 			echo "A";
+			die;
 			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
 				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
 				echo "B";
+				die;
 				addHeader();
 				echo '{ "Status": "Success" }'; // Token successfully deleted.
 				http_response_code(200);
 			} else {
 				echo "C";
+				die;
 				addHeader();
 				echo '{ "Error": "Invalid token" }'; // Wrong token.
 				http_response_code(400);
 			}
 		} else { // Token is not set.
 			echo "D";
+			die;
 			addHeader();
 			echo '{ "Error": "Bad Request" }';
 			http_response_code(400);
