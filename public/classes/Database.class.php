@@ -1,7 +1,7 @@
 <?php
 namespace Classes;
 
-class DB
+class Database
 {
 	private $pdo;
 	public function __construct($host, $dbname, $username, $password)

@@ -1,4 +1,9 @@
 {
+	"autoload": {
+        "psr-4": {
+            "app\\": "classes/"
+        }
+    },
     "name": "kevjo/api",
     "description": "API written in PHP.",
     "authors": [
@@ -7,5 +12,8 @@
             "email": "kevjoekelly@gmail.com"
         }
     ],
-    "require": {}
+	"require": {},
+	"require-dev": {
+        "squizlabs/php_codesniffer": "^3.5"
+    }
 }
