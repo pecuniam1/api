@@ -64,12 +64,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 				echo '{ "Status": "Success" }'; // Token successfully deleted.
 				http_response_code(200);
 			} else {
-				addHeader();
 				echo '{ "Error": "Invalid token" }'; // Wrong token.
 				http_response_code(400);
 			}
 		} else { // Token is not set.
-			addHeader();
 			echo '{ "Error": "Bad Request" }';
 			http_response_code(400);
 		}
