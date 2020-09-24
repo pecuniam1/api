@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($path == "auth") {
 		$postBody = file_get_contents("php://input");
-		$postBody = json_decode($postBody);
+		$postBody = json_decode($postBody, true);
 		echo json_last_error_msg();
 		var_dump($postBody);die;
 
