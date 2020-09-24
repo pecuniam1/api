@@ -58,7 +58,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	if ($_GET['url'] == "auth") {
 		if (isset($_GET['token'])) { // needs to be cleaned
-			if ($db_query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
+			if ($db->query("SELECT token FROM login_tokens WHERE token=:token", array(':token'=>sha1($_GET['token'])))) {
 				$db->query('DELETE FROM login_tokens WHERE token=:token', array(':token'=>sha1($_GET['token'])));
 				addHeader();
 				echo '{ "Status": "Success" }'; // Token successfully deleted.
