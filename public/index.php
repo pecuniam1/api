@@ -6,7 +6,7 @@ $db = new DB("db5000931054.hosting-data.io", "dbs814459", "dbu797268", "I1p&*mC2
 # //This needs to be cleaned, at risk for injection if I end up using this path for sql queries.
 $path = ltrim($_SERVER['REQUEST_URI'], '/');
 echo $path;
-echo "<br>".$GET['url'];
+echo "<br>".$_GET['url'];
 die;
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
