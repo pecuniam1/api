@@ -26,9 +26,9 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$password = $postBody["password"];
 
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username'=>$username))) {
-			echo "here";die;
 			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
 				array(':username'=>$username))[0]['password'])) {
+				echo "here";die;
 				$cstrong = true;
 				$token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
 				$user_id = $db->query('SELECT id FROM users WHERE username=:username',
