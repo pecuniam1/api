@@ -25,6 +25,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$username = $postBody->username;
 		$password = $postBody->password;
 
+		var_dump($postBody);die;
+
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username'=>$username))) {
 			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
 				array(':username'=>$username))[0]['password'])) {
