@@ -20,11 +20,10 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 } else if ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($path == "auth") {
 		$postBody = file_get_contents("php://input");
-		$postBody = json_decode($postBody);
+		$postBody = json_decode($postBody, true);
 
-		$username = $postBody->username;
-		$password = $postBody->password;
-
+		$username = $postBody["username"];
+		$password = $postBody["password"];
 
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username'=>$username))) {
 			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
