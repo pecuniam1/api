@@ -33,6 +33,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 					$user_id = $db->query('SELECT id FROM users WHERE username=:username',
 					array(':username'=>$username))[0]['id'];
 					$db->query('INSERT INTO login_tokens VALUES (\'\', :token, :user_id)', array(':token'=>sha1($token), ':user_id'=>$user_id));
+					echo "HERE";die;
 					addHeader();
 					echo '{ "Token": "'.$token.'" }';
 				// 201 Created response code should be transmitted
