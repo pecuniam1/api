@@ -5,9 +5,9 @@ require 'includes/autoload.inc.php';
 use Classes\Constants as Constants;
 use Classes\Header as Header;
 use Classes\IP as IP;
-use Classes\Database as Database;
+use Classes\SiteDB as SiteDB;
 
-$db = new Database(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
+$db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
 
 if ($_SERVER['REQUEST_METHOD'] == "GET") {
 	if ($_GET['url'] == "users") {
