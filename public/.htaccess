@@ -1,0 +1,10 @@
+Header set Access-Control-Allow-Origin: "*"
+#Enable apache rewrite engine
+RewriteEngine On
+#set base
+RewriteBase /
+#conditional
+RewriteCond %{HTTPS} off
+RewriteRule (.*) https://%{SERVER_NAME}/$1 [R=301,L]
+#set rule -- any path after url will go to index.
+RewriteRule ^([^/]+)/? index.php?url=$1 [L,QSA]
