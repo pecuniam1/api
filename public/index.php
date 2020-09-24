@@ -82,6 +82,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			echo '{ "Error": "Bad Request" }';
 			http_response_code(400);
 		}
+	} else {
+		echo "RIGHT HRERE";die;
 	}
 } else { // for anything other than post or get
 	http_response_code(405);
