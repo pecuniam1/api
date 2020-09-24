@@ -56,6 +56,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		echo '{ "Status": "Success" }';
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
+	echo "done";die;
 	if ($path == "auth") {
 		if (isset($_GET['token'])) {
 			echo "A";
