@@ -1,6 +1,9 @@
 <?php
 include '../classes/Constants.class.php';
-include 'autoload.inc.php';
+include '../classes/Header.class.php';
+include '../classes/IP.class.php';
+include '../classes/SiteDB.class.php';
+// include 'autoload.inc.php';
 
 use Classes\Header as Header;
 use Classes\IP as IP;
