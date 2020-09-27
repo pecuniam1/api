@@ -5,10 +5,9 @@ function loadClass($className)
 	$fileName = '';
 	$namespace = '';
 
-	// Sets the include path as the "src" directory
 	$includePath = dirname(__FILE__, 2) . DIRECTORY_SEPARATOR;
 	echo $includePath;exit;
-	// c:\users\kevjo\documents\workspace\Router\src
+	// /homepages/17/d513922316htdocs/api/public
 
 	if (false !== ($lastNsPos = strripos($className, '\\'))) {
 		$namespace = substr($className, 0, $lastNsPos);
@@ -16,7 +15,7 @@ function loadClass($className)
 		$fileName = str_replace('\\', DIRECTORY_SEPARATOR, $namespace) . DIRECTORY_SEPARATOR;
 	}
 	$fileName .= str_replace('_', DIRECTORY_SEPARATOR, $className) . '.php';
-	$fullFileName = $includePath . DIRECTORY_SEPARATOR . $fileName;
+	$fullFileName = $includePath . $fileName;
 
 	if (file_exists($fullFileName)) {
 		require $fullFileName;

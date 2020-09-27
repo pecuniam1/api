@@ -1,10 +1,5 @@
 <?php
-// include_once '../classes/Constants.php';
-// include_once '../classes/Header.php';
-// include_once '../classes/IP.php';
-// include_once '../classes/SiteDB.php';
-// include_once '../classes/EmailController.php';
- include 'autoload.inc.php';
+include 'autoload.inc.php';
 
 use Classes\Header as Header;
 use Classes\IP as IP;
