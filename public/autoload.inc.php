@@ -7,7 +7,7 @@ function loadClass($className)
 
 	// Sets the include path as the "src" directory
 	$includePath = dirname(__FILE__, 2) . DIRECTORY_SEPARATOR;
-	// echo $includePath;exit;
+	echo $includePath;exit;
 	// c:\users\kevjo\documents\workspace\Router\src
 
 	if (false !== ($lastNsPos = strripos($className, '\\'))) {

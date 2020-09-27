@@ -1,14 +1,16 @@
 <?php
-include '../classes/Constants.class.php';
-include '../classes/Header.class.php';
-include '../classes/IP.class.php';
-include '../classes/SiteDB.class.php';
-// include 'autoload.inc.php';
+// include_once '../classes/Constants.php';
+// include_once '../classes/Header.php';
+// include_once '../classes/IP.php';
+// include_once '../classes/SiteDB.php';
+// include_once '../classes/EmailController.php';
+ include 'autoload.inc.php';
 
 use Classes\Header as Header;
 use Classes\IP as IP;
 use Classes\SiteDB as SiteDB;
 use Classes\Constants as Constants;
+use Classes\EmailController as EmailController;
 
 $db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
 
@@ -63,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$message .= "Email: " . (!empty($postBody["email"]) ? $postBody["email"] : "empty") . "<br>";
 		$message .= "Subject: " . (!empty($postBody["subject"]) ? $postBody["subject"] : "empty") . "<br>";
 		$message .= "IP Address: " . IP::getClientIpAddress();
-		$success = Header::sendTestMessage($message);
+		$success = EmailController::sendMessage($message);
 		if ($success) {
 			echo '{ "Status": "Success" }';
 		} else {

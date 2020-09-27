@@ -14,4 +14,9 @@ class Constants
 	// const DB_NAME = "Tiffany";
 	// const DB_USER = "root";
 	// const DB_PASSWORD = "";
+
+	public function getWebsiteName() : string
+	{
+		return self::WEBSITE_NAME;
+	}
 }
