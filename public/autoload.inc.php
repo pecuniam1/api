@@ -6,8 +6,6 @@ function loadClass($className)
 	$namespace = '';
 
 	$includePath = dirname(__FILE__, 2) . DIRECTORY_SEPARATOR;
-	echo $includePath;exit;
-	// /homepages/17/d513922316htdocs/api/public
 
 	if (false !== ($lastNsPos = strripos($className, '\\'))) {
 		$namespace = substr($className, 0, $lastNsPos);
