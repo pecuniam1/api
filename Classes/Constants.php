@@ -10,13 +10,4 @@ class Constants
 	const DB_NAME = "dbs814459";
 	const DB_USER = "dbu797268";
 	const DB_PASSWORD = "I1p&*mC2F72NH0$%";
-	// const DB_HOST = "localhost";
-	// const DB_NAME = "Tiffany";
-	// const DB_USER = "root";
-	// const DB_PASSWORD = "";
-
-	public function getWebsiteName() : string
-	{
-		return self::WEBSITE_NAME;
-	}
 }
