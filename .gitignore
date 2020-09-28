@@ -1,2 +1,4 @@
 /vendor
 ruleset.xml
+php-errors.log
+php.ini
