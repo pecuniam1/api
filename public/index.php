@@ -64,7 +64,8 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		if ($success) {
 			echo '{ "Status": "Success" }';
 		} else {
-			echo '{ "Status": "ERROR -- email not sent"}';
+			$error = error_get_last()['message'];
+			echo '{ "Status": "ERROR -- email not sent", "Error message": "$error" }';
 		}
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {

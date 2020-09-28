@@ -21,6 +21,6 @@ class IP
 		} elseif (isset($_SERVER['REMOTE_ADDR'])) {
 			return $_SERVER['REMOTE_ADDR'];
 		}
-		return "UNKOWN";
+		return "UNKNOWN";
 	}
 }

@@ -19,8 +19,5 @@ class EmailController
 		$headers .= "X-Mailer: PHP/" . phpversion();
 		$success = mail($to, $subject, $message, $headers);
 		return $success;
-		// if (!$success) {
-		// 	$errorMessage = error_get_last()['message'];
-		// }
 	}
 }
