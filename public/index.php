@@ -1,10 +1,10 @@
 <?php
 include 'autoload.inc.php';
 
+use Classes\Constants as Constants;
 use Classes\Header as Header;
 use Classes\IP as IP;
 use Classes\SiteDB as SiteDB;
-use Classes\Constants as Constants;
 use Classes\EmailController as EmailController;
 
 $db = new SiteDB(Constants::DB_HOST, Constants::DB_NAME, Constants::DB_USER, Constants::DB_PASSWORD);
@@ -65,7 +65,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			echo '{ "Status": "Success" }';
 		} else {
 			$error = error_get_last()['message'];
-			echo '{ "Status": "ERROR -- email not sent", "Error message": "$error" }';
+			echo '{ "Status": "ERROR -- email not sent", "Error message": $error }'; // TODO I don't think the error will actually print
 		}
 	}
 } else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {

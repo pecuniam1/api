@@ -4,9 +4,9 @@ class IP
 {
 	/**
 	 * Gets the client IP address.
-	 * @return string
+	 * @return string The IP address or UNKNOWN if not known.
 	 */
-	public static function getClientIpAddress(): string
+	public static function getClientIpAddress() : string
 	{
 		if (isset($_SERVER['HTTP_CLIENT_IP'])) {
 			return $_SERVER['HTTP_CLIENT_IP'];

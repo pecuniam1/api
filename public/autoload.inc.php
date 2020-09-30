@@ -1,6 +1,12 @@
 <?php
 
-function loadClass($className)
+/**
+ * loadClass function
+ *
+ * @param string $className The name of the class being loaded.
+ * @return void
+ */
+function loadClass($className) : void
 {
 	$fileName = '';
 	$namespace = '';

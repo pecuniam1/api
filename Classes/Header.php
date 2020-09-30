@@ -3,7 +3,7 @@ namespace Classes;
 class Header
 {
 	/**
-	 * Clean header removes an header in the buffer.
+	 * Cleans the output buffer and removes any existing header.
 	 * @return void
 	 */
 	public static function cleanHeader() : void
@@ -18,7 +18,7 @@ class Header
 	public static function addJSONHeader() : void
 	{
 		self::cleanHeader();
-		header("Content-type: application/json; charset=utf-8");
+		header("Content-Type: application/json; charset=UTF-8");
 	}
 	/**
 	 * Adds an HTML header.
