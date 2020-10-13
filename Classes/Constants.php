@@ -1,7 +1,7 @@
 <?php
 namespace Classes;
 
-define ('APP_ROOT', dirname(__FILE__, 2));
+define('APP_ROOT', dirname(__FILE__, 2));
 class Constants
 {
 	const WEBMASTER_ADDRESS = "webmaster@joekellyonline.com";

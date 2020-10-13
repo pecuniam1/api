@@ -20,7 +20,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		include("not_found.html");
 		die();
 	}
-} else if ($_SERVER['REQUEST_METHOD'] == "POST") {
+} elseif ($_SERVER['REQUEST_METHOD'] == "POST") {
 	if ($_GET['url'] == "auth") {
 		$postBody = file_get_contents("php://input");
 		$postBody = json_decode($postBody, true);
@@ -29,8 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 		$password = $postBody["password"];
 
 		if ($db->query('SELECT username FROM users WHERE username=:username', array(':username' => $username))) {
-			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username',
-				array(':username' => $username))[0]['password'])) {
+			if (password_verify($password, $db->query('SELECT password FROM users WHERE username=:username', array(':username' => $username))[0]['password'])) {
 				$cstrong = true;
 				$token = bin2hex(openssl_random_pseudo_bytes(64, $cstrong));
 				$user_id = $db->query(
@@ -65,10 +64,11 @@ if ($_SERVER['REQUEST_METHOD'] == "GET") {
 			echo '{ "Status": "Success" }';
 		} else {
 			$error = error_get_last()['message'];
-			echo '{ "Status": "ERROR -- email not sent", "Error message": $error }'; // TODO I don't think the error will actually print
+			// TODO I don't think the error will actually print
+			echo '{ "Status": "ERROR -- email not sent", "Error message": $error }';
 		}
 	}
-} else if ($_SERVER['REQUEST_METHOD'] == "DELETE") {
+} elseif ($_SERVER['REQUEST_METHOD'] == "DELETE") {
 	if ($_GET['url'] == "auth") {
 		if (isset($_GET['token'])) { // needs to be cleaned
 			if ($db->query(
