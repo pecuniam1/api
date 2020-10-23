@@ -9,5 +9,5 @@ To view an example of the custom 404 page, go to [https://api.joekellyonline.com
 | GET | anything else | Will return page not found (404). |
 | POST | [https://api.joekellyonline.com/auth](https://api.joekellyonline.com/auth) | Will verify login and return token. |
 | POST | [https://api.joekellyonline.com/contact](https://api.joekellyonline.com/contact) | Sends an email with optional fields: name, phone, email, and subject |
-| DELETE | [https://api.joekellyonline.com/auth](https://api.joekellyonline.com/users) | Will remove the token. |
+| DELETE | [https://api.joekellyonline.com/auth](https://api.joekellyonline.com/auth) | Will remove the token. |
 | HEAD, PUT, CONNECT<br>OPTIONS, TRACE, PATCH | all | Will return method not allowed (405). |
